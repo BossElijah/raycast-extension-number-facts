@@ -5,7 +5,7 @@ import { useState } from "react";
 const DateFacts = () => {
   const [date, setDate] = useState<Date | null>(null);
 
-  const apiUrl = `http://numbersapi.com/${date ? `${date.getMonth()+1}/${date.getDate()}` : "random"}/date`;
+  const apiUrl = `http://numbersapi.com/${date ? `${date.getMonth() + 1}/${date.getDate()}` : "random"}/date`;
 
   const { isLoading, data, revalidate } = useFetch<string>(apiUrl);
 
@@ -24,7 +24,13 @@ const DateFacts = () => {
         </ActionPanel>
       }
     >
-      <Form.DatePicker id="datepicker" autoFocus value={date} onChange={handleChange} />
+      <Form.DatePicker
+        id="datepicker"
+        autoFocus
+        value={date}
+        onChange={handleChange}
+        info="Only the date and month will be used. The year and time will be ignored."
+      />
       <Form.Description text={isLoading ? "Loading..." : data ? data : ""} />
     </Form>
   );

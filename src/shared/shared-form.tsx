@@ -41,6 +41,7 @@ const SharedForm = ({ apiUrl, inputType, number, setNumber, allowNegative }: Sha
         placeholder={`Type in a ${inputType}`}
         value={number}
         onChange={handleChange}
+        info={`The value can be ${allowNegative ? "positive or negative." : "positive only."}`}
       />
       <Form.Description text={isLoading ? "Loading..." : data ? data : ""} />
     </Form>
