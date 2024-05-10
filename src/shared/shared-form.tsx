@@ -17,6 +17,10 @@ const SharedForm = ({ apiUrl, inputType, number, setNumber, allowNegative }: Sha
     if (value !== "" && isNaN(Number(value)) && value !== "-") {
       return;
     }
+    // If negative values aren't allowed, this disables them.
+    if (!allowNegative && (value === "-" || value.charAt(0) === "-")) {
+      return;
+    }
     setNumber(value.replace(/\s+/, ""));
     revalidate();
   };
